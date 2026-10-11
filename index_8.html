@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--
+  Portfolio for Rukia Bomba, Teacher (Version 2: exercise-book theme)
+  This is ONE file. The CSS is inside the <style> tag below,
+  so you do NOT need a separate style.css. Upload only this file
+  to the root of your GitHub repo and name it index.html.
+  Text marked "SAMPLE" is placeholder content. Replace it with your own.
+-->
+<html lang="en"> <!-- lang tells screen readers which language to use -->
+<head>
+  <meta charset="UTF-8">
+  <!-- Makes the page fit phone screens -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rukia Bomba | Teacher</title>
+  <meta name="description" content="Portfolio of Rukia Bomba, a teacher: about me, my projects and how to contact me.">
+
+  <style>
+    /* =====================================================
+       1. COLORS AND FONTS
+       Change a color here and it updates the whole page.
+       ===================================================== */
+    :root {
+      --ink:    #1d3557;  /* dark blue, like pen ink: headings and borders */
+      --text:   #1f2937;  /* main text color */
+      --muted:  #475569;  /* secondary text */
+      --paper:  #fbfcff;  /* page background, slightly blue-white */
+      --line:   #cfdcf0;  /* faint ruled lines */
+      --margin: #b3261e;  /* red margin line and accents (like a teacher's pen) */
+      --marker: #ffe066;  /* highlighter yellow */
+
+      --font-heading: Georgia, "Times New Roman", serif;
+      --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    /* =====================================================
+       2. BASIC SETUP
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--paper);
+    }
+
+    /* Smooth scrolling, only if the visitor has not asked for less motion */
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-heading);
+      color: var(--ink);
+      line-height: 1.2;
+      margin: 0 0 1rem;
+    }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.3rem; }
+
+    p { max-width: 40rem; margin: 0 0 1rem; }
+
+    a { color: var(--ink); text-underline-offset: 0.2em; }
+
+    /* Visible outline for keyboard users */
+    a:focus-visible {
+      outline: 3px solid var(--margin);
+      outline-offset: 3px;
+    }
+
+    /* Keeps content centered and not too wide */
+    .wrap {
+      max-width: 60rem;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Skip link: hidden until a keyboard user presses Tab */
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--marker);
+      color: var(--ink);
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      z-index: 10;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* =====================================================
+       3. HEADER
+       Name on the left, menu on the right (wraps on phones)
+       ===================================================== */
+    .site-header {
+      border-bottom: 2px solid var(--ink);
+    }
+    .header-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.25rem 1.5rem;
+      padding: 0.5rem 1.25rem;
+      max-width: 60rem;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+    .nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 1.25rem;
+      list-style: none;   /* removes bullet points */
+      margin: 0;
+      padding: 0;
+    }
+    .nav-list a {
+      display: inline-block;
+      padding: 0.7rem 0;   /* gives a comfortable tap area */
+      font-weight: 600;
+    }
+
+    /* =====================================================
+       4. HERO: looks like a page from an exercise book
+       The ruled lines and red margin are made with CSS gradients,
+       so no images are needed.
+       ===================================================== */
+    .hero {
+      padding: 3.5rem 0 4rem;
+      background-color: var(--paper);
+      /* Two background layers: (1) the red margin line, (2) the blue ruled lines */
+      background-image:
+        linear-gradient(to right, transparent 2.6rem, var(--margin) 2.6rem,
+                        var(--margin) calc(2.6rem + 2px), transparent calc(2.6rem + 2px)),
+        repeating-linear-gradient(to bottom, transparent 0, transparent 2.1rem,
+                                  var(--line) 2.1rem, var(--line) calc(2.1rem + 1px));
+      border-bottom: 2px solid var(--ink);
+    }
+    /* Extra left space so text stays clear of the red margin line */
+    .hero .wrap { padding-left: 4rem; }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 9vw, 4.25rem);
+      margin-bottom: 0.5rem;
+    }
+
+    /* The role looks highlighted with a yellow marker */
+    .role {
+      display: inline-block;
+      background: var(--marker);
+      color: var(--ink);
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      padding: 0.1rem 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro { font-size: 1.25rem; margin-bottom: 2rem; }
+
+    .button {
+      display: inline-block;
+      padding: 0.85rem 1.5rem;
+      background: var(--ink);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 0.4rem;
+    }
+    .button:hover { background: var(--margin); }
+
+    /* =====================================================
+       5. SECTIONS (shared spacing)
+       ===================================================== */
+    .section { padding: 3.5rem 0; }
+
+    /* A short red line under each section heading */
+    .section h2::after {
+      content: "";
+      display: block;
+      width: 3rem;
+      height: 4px;
+      background: var(--margin);
+      margin-top: 0.5rem;
+    }
+
+    /* =====================================================
+       6. PROJECT CARDS
+       Cards are stacked rows, each with a colored tab on the left,
+       like the divider tabs in a school file.
+       ===================================================== */
+    .projects { background: #eef3fb; }
+
+    .card-list {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: #ffffff;
+      border: 2px solid var(--ink);
+      border-left-width: 0.9rem;   /* the thick tab on the left */
+      border-radius: 0.4rem;
+      padding: 1.25rem 1.5rem;
+    }
+    .card p { color: var(--muted); margin-bottom: 0.75rem; }
+    .card-link { font-weight: 700; display: inline-block; padding: 0.4rem 0; }
+
+    /* =====================================================
+       7. CONTACT
+       ===================================================== */
+    .email-link {
+      font-size: 1.25rem;
+      font-weight: 700;
+      word-break: break-word;   /* stops long emails overflowing on phones */
+    }
+    .social-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      list-style: none;
+      margin: 1.5rem 0 0;
+      padding: 0;
+    }
+    .social-list a {
+      display: inline-block;
+      padding: 0.7rem 1.25rem;
+      border: 2px solid var(--ink);
+      border-radius: 0.4rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .social-list a:hover { background: var(--ink); color: #ffffff; }
+
+    /* =====================================================
+       8. FOOTER
+       ===================================================== */
+    .site-footer {
+      background: var(--ink);
+      color: #ffffff;
+      padding: 1.5rem 0;
+    }
+    .site-footer p { margin: 0; }
+
+    /* =====================================================
+       9. LARGER SCREENS (700px and wider)
+       Cards sit in 3 columns instead of stacked rows.
+       ===================================================== */
+    @media (min-width: 700px) {
+      .section { padding: 5rem 0; }
+      .hero .wrap { padding-left: 5rem; }
+      .card-list { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== HEADER AND MENU ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#top">Rukia Bomba</a>
+      <nav aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== HERO: name, role, short intro ===== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap">
+        <h1 id="hero-title">Rukia Bomba</h1>
+        <p class="role">Teacher</p>
+        <!-- SAMPLE intro: replace with 2 short sentences about you -->
+        <p class="intro">
+          I help learners build confidence through clear lessons and patient
+          support. I enjoy turning difficult topics into simple steps.
+        </p>
+        <a class="button" href="#projects">See my projects</a>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 id="about-title">About me</h2>
+        <!-- SAMPLE text: replace with your real story -->
+        <p>
+          I am a teacher who believes every learner can succeed when lessons
+          are clear and the classroom feels safe. I plan each lesson around
+          what learners already know and move forward one step at a time.
+        </p>
+        <p>
+          Outside the classroom, I create learning materials and I am
+          exploring how technology can make teaching easier.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS: 3 cards ===== -->
+    <section class="section projects" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <h2 id="projects-title">Projects</h2>
+
+        <div class="card-list">
+
+          <!-- Card 1. SAMPLE: replace the title, text and link -->
+          <article class="card">
+            <h3>Lesson Plan Library</h3>
+            <p>Ready-to-use lesson plans that other teachers can download
+               and adapt for their own classes.</p>
+            <!-- Replace the # with a real web address -->
+            <a class="card-link" href="#">View the lesson plans</a>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card">
+            <h3>Classroom Reading Club</h3>
+            <p>A weekly club where learners practise reading aloud and talk
+               about the stories they enjoy.</p>
+            <a class="card-link" href="#">Read about the club</a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card">
+            <h3>Parent Communication Guide</h3>
+            <p>A simple guide that shows parents how to support learning at
+               home in just ten minutes a day.</p>
+            <a class="card-link" href="#">Open the guide</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT: email and social links ===== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title">Contact</h2>
+        <p>Want to work together or ask a question? Send me a message.</p>
+
+        <!-- mailto: opens the visitor's email app. Replace the example address. -->
+        <p><a class="email-link" href="mailto:rukia.bomba@example.com">rukia.bomba@example.com</a></p>
+
+        <!-- Replace each address with your own profile page.
+             target="_blank" opens a new tab; rel="noopener noreferrer"
+             keeps the new tab from controlling this page (safety). -->
+        <ul class="social-list" aria-label="Social media">
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; 2026 Rukia Bomba</p>
+    </div>
+  </footer>
+
+</body>
+</html>
